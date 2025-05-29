@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Monitoramento Acadêmico</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sistema de Monitoramento Acadêmico</h1>
+            <p>Acompanhe seu desempenho e evolução acadêmica</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stats-card">
+                <div class="stats-label">Média Geral</div>
+                <div class="stats-number" id="mediaGeral">0.0</div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="mediaGeralBar" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-label">Disciplinas Cadastradas</div>
+                <div class="stats-number" id="totalDisciplinas">0</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-label">Disciplinas Aprovadas</div>
+                <div class="stats-number" id="disciplinasAprovadas">0</div>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2>Cadastrar Disciplina</h2>
+                <form id="disciplinaForm">
+                    <div class="form-group">
+                        <label for="nomeDisciplina">Nome da Disciplina</label>
+                        <input type="text" id="nomeDisciplina" class="form-control" required placeholder="Ex: Matemática">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="notaDisciplina">Nota</label>
+                            <input type="number" id="notaDisciplina" class="form-control" required min="0" max="10" step="0.1" placeholder="Ex: 8.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="pesoDisciplina">Peso</label>
+                            <input type="number" id="pesoDisciplina" class="form-control" required min="1" value="1" placeholder="Ex: 2">
+                        </div>
+                        <div class="form-group">
+                            <label for="corDisciplina">Cor</label>
+                            <input type="color" id="corDisciplina" class="form-control" value="#3498db">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Adicionar Disciplina</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Médias e Desempenho</h2>
+                <div class="chart-container" id="chartContainer">
+                    <!-- Chart will be rendered here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <h2>Disciplinas Cadastradas</h2>
+            <table id="disciplinasTable">
+                <thead>
+                    <tr>
+                        <th>Disciplina</th>
+                        <th>Nota</th>
+                        <th>Peso</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="disciplinasTableBody">
+                    <tr class="no-data">
+                        <td colspan="5">Nenhuma disciplina cadastrada</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Editar Disciplina</h2>
+                <button class="close-modal" id="closeEditModal">&times;</button>
+            </div>
+            <form id="editDisciplinaForm">
+                <input type="hidden" id="editIndex">
+                <div class="form-group">
+                    <label for="editNomeDisciplina">Nome da Disciplina</label>
+                    <input type="text" id="editNomeDisciplina" class="form-control" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editNotaDisciplina">Nota</label>
+                        <input type="number" id="editNotaDisciplina" class="form-control" required min="0" max="10" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPesoDisciplina">Peso</label>
+                        <input type="number" id="editPesoDisciplina" class="form-control" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="editCorDisciplina">Cor</label>
+                        <input type="color" id="editCorDisciplina" class="form-control">
+                    </div>
+                </div>
+                <button type="submit" class="btn">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
